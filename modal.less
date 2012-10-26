@@ -1,0 +1,206 @@
+// (c) Mikhail Yurasov, 2012
+
+@modalWidth: 910px; // total width
+@modalHeaderHeight: 50px;
+// total height; button_height + padding * 2
+@modalFooterHeight: 32px + 2 * @modalFooterPadding;
+@modalBorderRadius: 10px;
+@modalHeaderPadding: 15px;
+@modalFooterPadding: 9px;
+@modalContentPadding: 20px;
+@modalMaxHeight: 700px;
+
+.modal {
+
+  left: 50%;
+  z-index: 10;
+  position: fixed;
+  margin-top: 25px;
+  max-height: @modalMaxHeight;
+  min-height: @modalHeaderHeight + @modalFooterHeight;
+  margin-bottom: 25px;
+  width: @modalWidth;
+  margin-left: -@modalWidth / 2;
+  box-shadow: 0px 0px 40px #555;
+  border-radius: @modalBorderRadius;
+  display: none;
+
+  .modalBg {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: black;
+    z-index: 0;
+    left: 0px;
+    top: 0px;
+    opacity: 0.33;
+  }
+
+  .modalHeader {
+    background: #f0f0f0;
+    position: absolute;
+    padding: 0px @modalHeaderPadding 0px @modalHeaderPadding;
+    width: @modalWidth - @modalHeaderPadding * 2;
+    line-height: @modalHeaderHeight;
+    height: @modalHeaderHeight;
+    border-radius: @modalBorderRadius @modalBorderRadius 0px 0px;
+    font-size: 1.1em;
+
+    .closeButton {
+      cursor: pointer;
+      background: url("/images/modal-close.png");
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      z-index: 1;
+      top: (@modalHeaderHeight - 24px) / 2;
+      right: (@modalHeaderHeight - 24px) / 2;
+      opacity: 0.25;
+
+      &:hover {
+        opacity: 0.2;
+      }
+    }
+  }
+
+  .modalContent {
+    background: white;
+    position: absolute;
+    width: @modalWidth - @modalContentPadding * 2;
+    padding: @modalContentPadding;
+    overflow: auto;
+    top: @modalHeaderHeight;
+    bottom: @modalFooterHeight;
+
+    .container {
+      background: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .spin {
+      width: 70px;
+      height: 70px;
+      background-image: url(/images/modal-spinner.gif);
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      margin-left: -35px;
+      margin-top: -35px;
+      opacity: 0;
+      background-color: white;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      background-position: 5px 6px;
+    }
+  }
+}
+
+.modalFooter {
+  text-align: right;
+  background: #f0f0f0;
+  border-radius: 0px 0px @modalBorderRadius @modalBorderRadius;
+  width: @modalWidth - @modalFooterPadding * 2;
+  line-height: @modalFooterHeight - @modalFooterPadding * 2;
+  height: @modalFooterHeight - @modalFooterPadding * 2;
+  padding: @modalFooterPadding;
+  position: absolute;
+  bottom: 0px;
+
+  button {
+    margin-left: 15px;
+  }
+}
+
+&.noFooter {
+  .modalContent {
+    bottom: 0;
+    border-bottom-left-radius: @modalBorderRadius;
+    border-bottom-right-radius: @modalBorderRadius;
+  }
+
+  .modalFooter {
+    display: none;
+  }
+}
+
+&.noHeader {
+  .modalContent {
+    top: 0;
+    border-top-left-radius: @modalBorderRadius;
+    border-top-right-radius: @modalBorderRadius;
+  }
+
+  .modalHeader {
+    display: none;
+  }
+}
+
+// tabs
+
+.modal .modalHeader {
+  .tabs {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 50px;
+    font-size: 16px;
+
+    .tab {
+      cursor: pointer;
+      display: inline-block;
+      line-height: 32px;
+      //margin-right: 12px;
+      padding: 0px 15px 0px 15px;
+
+      &.selected {
+        background: #AFAFAF;
+        color: #FAFAFA;
+        border-radius: 5px;
+        border-bottom: none;
+        text-shadow: 1px 1px 1px #555;
+        box-shadow: inset 0px 0px 8px #555;
+      }
+    }
+  }
+}
+
+// screens
+
+.modal .modalContent {
+  .screens {
+    position: relative;
+    //height: 0px; // changed when screen is changed
+    //z-index: 0;
+
+    .screen {
+      width: 100%;
+      top: 0px;
+      position: absolute;
+      opacity: 0;
+      z-inxed: 0;
+
+      &.selected {
+        opacity: 1;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+// columns
+.modal .form {
+  // column sized by css
+  .autoColumn {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  input::-webkit-input-placeholder {
+    color: @grayText;
+  }
+
+  input:-moz-placeholder {
+    color: @grayText;
+  }
+}

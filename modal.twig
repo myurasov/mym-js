@@ -1,0 +1,30 @@
+{# (c) Mikhail Yurasov, 2012 #}
+
+<script type="template" id="{{ templateId }}">
+
+  <div class="modal {{ classes }} ">
+    <div class="modalBg"></div>
+    <div class="modalHeader">
+      {% block header %}
+        <span class="modalTitle">
+          {% block title %}Title{% endblock %}
+        </span>
+        <div class="closeButton"></div>
+      {% endblock %}
+    </div>
+    <div class="modalContent">
+      <div class="container">
+        {% block content %}
+          (content)
+        {% endblock %}
+      </div>
+      <div class="spin"></div>
+    </div>
+    <div class="modalFooter">
+      {% block footer %}
+        <button class="gray" _close>Close</button>
+      {% endblock %}
+    </div>
+  </div>
+
+</script>

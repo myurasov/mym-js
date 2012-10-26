@@ -1,0 +1,59 @@
+// (c) Mikhail Yurasov, 2012
+
+.alert {
+  @alertBorderRadius: 10px;
+  @alertWidth: 500px;
+  @alertWidthFull: @alertWidth + 2 * 30px; // + width_padding
+
+  display: none;
+  z-index: 200;
+  position: fixed;
+  margin-left: -1 * @alertWidthFull / 2;
+  border-radius: @alertBorderRadius;
+  box-shadow: 0px 0px 40px #555;
+  left: 50%;
+  top: 50%;
+
+  // margin-top is calculated on content-change !!!
+
+  .alertBg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+  }
+
+  &.dimmedBg {
+    .alertBg {
+      background: black;
+      opacity: 0.33;
+    }
+  }
+
+  .alertBody {
+    background-color: white;
+    width: @alertWidth;
+    border-radius: @alertBorderRadius @alertBorderRadius 0px 0px;
+    text-align: center;
+    padding: 40px 30px 40px 30px;
+    font-size: 20px;
+  }
+
+  .alertFooter {
+    background-color: #f0f0f0;
+    width: @alertWidth;
+    text-align: center;
+    border-radius: 0px 0px @alertBorderRadius @alertBorderRadius;
+    padding: 9px 30px 9px 30px;
+
+    button {
+      margin-right: 15px;
+
+      &:last-child {
+       margin-right: 0px;
+      }
+    }
+  }
+}

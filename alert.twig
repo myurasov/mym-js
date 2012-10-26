@@ -1,0 +1,18 @@
+{# (c) Mikhail Yurasov, 2012 #}
+
+<script type="template" {% if class %}class="{{ class }}"{% endif %}>
+  <div class="alert {{ classes }}">
+    <div class="alertBg"></div>
+    <div class="alertBody">
+      {% block body %}
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore?
+      {% endblock %}
+    </div>
+    <div class="alertFooter">
+    {% block buttons %}
+        <button class="gray">OK</button>
+        <button class="gray">Cancel</button>
+    {% endblock %}
+    </div>
+  </div>
+</script>
